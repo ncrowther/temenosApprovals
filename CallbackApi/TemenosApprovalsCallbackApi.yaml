@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Temenos Approvals Callback API - OpenAPI 3.0
+  description: |-
+    This is a stubbed call back API for Temenos approvals workflow
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: ncrowther@uk.ibm.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Open APIs
+  url: http://swagger.io
+servers:
+  - url: https://localhost:8090/ms-servicerequest-api/api/v1.0.0/order/serviceRequests
+paths:
+  /approval/{serviceRequestId}:
+    put:
+      tags:
+        - Approval
+      summary: Approve or decline a request
+      description: Approve or decline by Id
+      operationId: approval
+      parameters:
+      - name: serviceRequestId   # Note the name is the same as in the path
+        in: path
+        required: true
+        schema:
+          type: string
+          minimum: 1
+        description: The service request ID      
+      requestBody:
+        description: Approval body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Approval not found
+        '405':
+          description: Validation exception
+components:
+  schemas:
+    ServiceRequest:
+      type: object
+      properties:
+        serviceRequest:
+          $ref: '#/components/schemas/Approval'
+    Approval:
+      required:
+        - purpose
+      type: object
+      properties:
+        purpose:
+          type: string
+          description: approval status
+          enum:
+            - APPROVE
+            - REJECT
+          example: APPROVE
+        actionNotes:
+          type: string
+          example: chequebook can be issued          
+  requestBodies:
+    Approval:
+      description: Approval object that needs to be added to the approval response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Approval'
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+      
+security:
+  - bearerAuth: []         # use the same name as above      
