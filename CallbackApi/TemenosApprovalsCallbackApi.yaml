@@ -1,3 +1,4 @@
+
 openapi: 3.0.3
 info:
   title: Temenos Approvals Callback API - OpenAPI 3.0
@@ -76,10 +77,8 @@ components:
           schema:
             $ref: '#/components/schemas/Approval'
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
+    basicAuth:            # the security scheme
       type: http
-      scheme: bearer
-      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
-      
+      scheme: basic
 security:
-  - bearerAuth: []         # use the same name as above      
+  - basicAuth: []         # use the same name as above      
