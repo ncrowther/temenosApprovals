@@ -77,8 +77,10 @@ components:
           schema:
             $ref: '#/components/schemas/Approval'
   securitySchemes:
-    basicAuth:            # the security scheme
+    bearerAuth:            # arbitrary name for the security scheme
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+
 security:
-  - basicAuth: []         # use the same name as above      
+  - bearerAuth: []         # use the same name as above 
