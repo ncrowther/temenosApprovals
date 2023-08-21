@@ -39,6 +39,9 @@ public class TransactionRequest implements java.io.Serializable {
 	@org.kie.api.definition.type.Label("charges")
 	private java.lang.String charges;
 
+	@org.kie.api.definition.type.Label(value = "serviceRequestId")
+	private java.lang.String serviceRequestId;
+
 	public TransactionRequest() {
 	}
 
@@ -162,6 +165,14 @@ public class TransactionRequest implements java.io.Serializable {
 		this.amount = amount;
 	}
 
+	public java.lang.String getServiceRequestId() {
+		return this.serviceRequestId;
+	}
+
+	public void setServiceRequestId(java.lang.String serviceRequestId) {
+		this.serviceRequestId = serviceRequestId;
+	}
+
 	public TransactionRequest(java.lang.String partyId,
 			java.lang.String serviceRequestType, java.lang.String userId,
 			java.lang.String payerAccountId, java.lang.String payerSortCode,
@@ -169,7 +180,8 @@ public class TransactionRequest implements java.io.Serializable {
 			java.lang.String payeeAccountSortcode,
 			java.lang.String transactionNarrative, java.lang.String frequency,
 			java.lang.String validUntil, int amount, java.lang.String currency,
-			java.lang.String chargeCode, java.lang.String charges) {
+			java.lang.String chargeCode, java.lang.String charges,
+			java.lang.String serviceRequestId) {
 		this.partyId = partyId;
 		this.serviceRequestType = serviceRequestType;
 		this.userId = userId;
@@ -185,6 +197,7 @@ public class TransactionRequest implements java.io.Serializable {
 		this.currency = currency;
 		this.chargeCode = chargeCode;
 		this.charges = charges;
+		this.serviceRequestId = serviceRequestId;
 	}
 
 }
